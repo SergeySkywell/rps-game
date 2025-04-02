@@ -13,4 +13,7 @@ function getUserChoice() {
 }
 
 const userChoice = getUserChoice();
-console.log("Вы выбрали:", userChoice);
+
+const choiceInfo = document.querySelector(".user-choice")
+
+choiceInfo.textContent = `Ваш выбор — ${userChoice}`;
