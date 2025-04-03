@@ -1,6 +1,11 @@
 const options = ["камень", "ножницы", "бумага"];
 
-// Спрашиваем пользователя и проверяем
+// DOM-элементы
+
+const userChoiceInfo = document.querySelector(".user-choice");
+const computerChoiceInfo = document.querySelector(".computer-choice");
+
+// Получаем выбор пользователя
 
 function getUserChoice() {
     let choice = prompt("Камень, ножницы, бумага?").toLowerCase();
@@ -12,18 +17,19 @@ function getUserChoice() {
     return choice;
 }
 
-// Функция выбора случайного индекса
+// Генерируем случайный выбор компьютера
 
 function getComputerChoice() {
-    let choice = Math.floor(Math.random() * 3);
+    let index = Math.floor(Math.random() * 3);
 
-    return options[choice];
+    return options[index];
 }
 
-const userChoice = getUserChoice();
-const userChoiceInfo = document.querySelector(".user-choice")
-userChoiceInfo.textContent = `Ваш выбор — ${userChoice}`;
+// Начинаем игру
 
+const userChoice = getUserChoice();
 const computerChoice = getComputerChoice();
-const computerChoiceInfo = document.querySelector(".computer-choice")
+
+
+userChoiceInfo.textContent = `Ваш выбор — ${userChoice}`;
 computerChoiceInfo.textContent = `Выбор компьютера — ${computerChoice}`;
