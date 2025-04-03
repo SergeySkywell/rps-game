@@ -1,8 +1,8 @@
+const options = ["камень", "ножницы", "бумага"];
+
 // Спрашиваем пользователя и проверяем
 
 function getUserChoice() {
-    const options = ["камень", "ножницы", "бумага"];
-
     let choice = prompt("Камень, ножницы, бумага?").toLowerCase();
 
     while (!options.includes(choice)) {
@@ -12,8 +12,18 @@ function getUserChoice() {
     return choice;
 }
 
+// Функция выбора случайного индекса
+
+function getComputerChoice() {
+    let choice = Math.floor(Math.random() * 3);
+
+    return options[choice];
+}
+
 const userChoice = getUserChoice();
+const userChoiceInfo = document.querySelector(".user-choice")
+userChoiceInfo.textContent = `Ваш выбор — ${userChoice}`;
 
-const choiceInfo = document.querySelector(".user-choice")
-
-choiceInfo.textContent = `Ваш выбор — ${userChoice}`;
+const computerChoice = getComputerChoice();
+const computerChoiceInfo = document.querySelector(".computer-choice")
+computerChoiceInfo.textContent = `Выбор компьютера — ${computerChoice}`;
