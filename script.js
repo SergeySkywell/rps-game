@@ -1,3 +1,5 @@
+// ==== Константы ====
+
 const options = ["камень", "ножницы", "бумага"];
 
 const rules = {
@@ -6,13 +8,13 @@ const rules = {
     бумага: "камень"
 };
 
-// DOM-элементы
+// ==== DOM-элементы ====
 
 const userChoiceInfo = document.querySelector(".user-choice");
 const computerChoiceInfo = document.querySelector(".computer-choice");
-const result = document.querySelector(".result")
+const resultInfo = document.querySelector(".result");
 
-// Получаем выбор пользователя
+// ==== Функции ====
 
 function getUserChoice() {
     let choice = prompt("Камень, ножницы, бумага?").toLowerCase();
@@ -24,35 +26,27 @@ function getUserChoice() {
     return choice;
 }
 
-// Генерируем случайный выбор компьютера
-
 function getComputerChoice() {
-    let index = Math.floor(Math.random() * 3);
-
+    const index = Math.floor(Math.random() * options.length);
     return options[index];
 }
 
-// Начинаем игру
-
-const userChoice = getUserChoice();
-const computerChoice = getComputerChoice();
-
-
-userChoiceInfo.textContent = `Ваш выбор — ${userChoice}`;
-computerChoiceInfo.textContent = `Выбор компьютера — ${computerChoice}`;
-
-// Определяем победителя
-
 function determineWinner(userChoice, computerChoice) {
     if (userChoice === computerChoice) {
-        return 'Ничья';
+        return "Ничья";
     } else if (rules[userChoice] === computerChoice) {
-        return 'Вы';
+        return "Вы";
     } else {
-        return 'Компьютер';
+        return "Компьютер";
     }
 }
 
+// ==== Запуск игры ====
+
+const userChoice = getUserChoice();
+const computerChoice = getComputerChoice();
 const winner = determineWinner(userChoice, computerChoice);
 
-result.textContent = `Победитель — ${winner}`;
+userChoiceInfo.textContent = `Ваш выбор — ${userChoice}`;
+computerChoiceInfo.textContent = `Выбор компьютера — ${computerChoice}`;
+resultInfo.textContent = `Победитель — ${winner}`;
