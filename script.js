@@ -1,9 +1,16 @@
 const options = ["камень", "ножницы", "бумага"];
 
+const rules = {
+    камень: "ножницы",
+    ножницы: "бумага",
+    бумага: "камень"
+};
+
 // DOM-элементы
 
 const userChoiceInfo = document.querySelector(".user-choice");
 const computerChoiceInfo = document.querySelector(".computer-choice");
+const result = document.querySelector(".result")
 
 // Получаем выбор пользователя
 
@@ -33,3 +40,19 @@ const computerChoice = getComputerChoice();
 
 userChoiceInfo.textContent = `Ваш выбор — ${userChoice}`;
 computerChoiceInfo.textContent = `Выбор компьютера — ${computerChoice}`;
+
+// Определяем победителя
+
+function determineWinner(userChoice, computerChoice) {
+    if (userChoice === computerChoice) {
+        return 'Ничья';
+    } else if (rules[userChoice] === computerChoice) {
+        return 'Вы';
+    } else {
+        return 'Компьютер';
+    }
+}
+
+const winner = determineWinner(userChoice, computerChoice);
+
+result.textContent = `Победитель — ${winner}`;
